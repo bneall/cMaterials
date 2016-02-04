@@ -1,17 +1,9 @@
-## Make Material
-from PySide import QtGui, QtCore
-import mari
-import os
+# Core Code by Ben Neall, 2015
+# Additions by Jens Kafitz, 2016
 
-CSS_tree = "\\QTreeWidget { background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #404040, stop: 1 transparent); alternate-background-color: rgba(255, 255, 255, 3%);} \\"
-CSS_colorButton = "background-color: rgba(%s, %s, %s, %s); border: 1px solid; border-radius: 3px;"
-solidBlack = [0.0, 0.0, 0.0, 1.0]
-solidWhite = [1.0, 1.0, 1.0, 1.0]
-iconpath = mari.resources.path(mari.resources.ICONS)
-
-# CHANGELIST
+# CHANGELIST - Jens Kafitz
 # - CURRENTLY THIS IS 2.6 CODE --- not tested with mari 3
-# - It is now a Palette 'Material manager' (disabled for debugging)
+# - It is now a Palette 'Material manager' 
 # - Converted most textbuttons to Icons for Space, added Tooltips
 # - You can now toggle the visibility of a complete material via the dialog
 # - You can now rename a Material
@@ -46,6 +38,21 @@ iconpath = mari.resources.path(mari.resources.ICONS)
 # - Add Float Values to all Elements Materials
 # - Export Material
 # - REJECTED: Add Refresh Option (rebuild tree)
+
+
+
+
+## Make Material
+from PySide import QtGui, QtCore
+import mari
+import os
+
+CSS_tree = "\\QTreeWidget { background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #404040, stop: 1 transparent); alternate-background-color: rgba(255, 255, 255, 3%);} \\"
+CSS_colorButton = "background-color: rgba(%s, %s, %s, %s); border: 1px solid; border-radius: 3px;"
+solidBlack = [0.0, 0.0, 0.0, 1.0]
+solidWhite = [1.0, 1.0, 1.0, 1.0]
+iconpath = mari.resources.path(mari.resources.ICONS)
+
 
 
 #=================================================================
@@ -1109,7 +1116,7 @@ class MaterialManager(QtGui.QDialog):
         mari.utils.connect(mari.geo.entityMadeCurrent,self.onProjectOpen)
 
         # remove when part of palette:
-        self.onProjectOpen()
+        # self.onProjectOpen()
 
         self.materialTree.itemClicked.connect(self.buildMaterialSettings)
         addMaterialBtn.clicked.connect(self.addMaterial)
@@ -1467,10 +1474,10 @@ def _makePalette():
     return materialPalette, materialControlWidget
 
 
-diag = MaterialManager()
-diag.show()
+# diag = MaterialManager()
+# diag.show()
 
 
-# if mari.app.isRunning():
-#     _makePalette()
+if mari.app.isRunning():
+    _makePalette()
 
